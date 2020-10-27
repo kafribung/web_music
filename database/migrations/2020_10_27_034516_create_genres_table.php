@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBandsTable extends Migration
+class CreateGenresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateBandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bands', function (Blueprint $table) {
+        Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->string('img')->nullable();
             $table->string('name')->unique();
             $table->string('slug');
             $table->timestamps();
@@ -29,6 +28,6 @@ class CreateBandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bands');
+        Schema::dropIfExists('genres');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBandsTable extends Migration
+class CreateLiricsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateBandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bands', function (Blueprint $table) {
+        Schema::create('lirics', function (Blueprint $table) {
             $table->id();
-            $table->string('img')->nullable();
-            $table->string('name')->unique();
+            $table->string('title');
+            $table->text('body');
             $table->string('slug');
+            $table->foreignId('album_id')->constrained('albums')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
+            // $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -29,6 +31,6 @@ class CreateBandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bands');
+        Schema::dropIfExists('lirics');
     }
 }
