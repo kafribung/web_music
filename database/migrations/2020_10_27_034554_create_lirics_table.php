@@ -20,7 +20,6 @@ class CreateLiricsTable extends Migration
             $table->string('slug');
             $table->foreignId('album_id')->constrained('albums')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
-            // $table->foreign('album_id')->references('id')->on('albums')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

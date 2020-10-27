@@ -17,7 +17,9 @@ class CreateAlbumsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('slug');
+            $table->bigInteger('band_id')->unsigned();
             $table->timestamps();
+            $table->foreign('band_id')->references('id')->on('bands')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
