@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class BandController extends Controller
@@ -16,7 +17,8 @@ class BandController extends Controller
     // Create
     public function create()
     {
-        //
+        $genres =  Genre::get();
+        return view('dashboard_create.band_create', compact('genres'));
     }
 
     // Store
@@ -28,7 +30,7 @@ class BandController extends Controller
     // Show
     public function show($id)
     {
-        //
+        return abort('404');
     }
 
     // Edit

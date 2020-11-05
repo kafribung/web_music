@@ -23,8 +23,7 @@
     </div>
     <div class="app-header__menu">
         <span>
-            <button type="button"
-                class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+            <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
                 <span class="btn-icon-wrapper">
                     <i class="fa fa-ellipsis-v fa-w-6"></i>
                 </span>
@@ -36,65 +35,29 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
-                    <a href="/dashboard" class="mm-active">
+                    <a href="/dashboard" class="{{ Request::is('dashboard') ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-rocket"></i>
                         Dashboard Saya
                     </a>
                 </li>
-                <li class="app-sidebar__heading">UI Components</li>
+                <li class="app-sidebar__heading">Akses Kontrol</li>
                 <li>
-                    <a href="#">
+                    <a href="" class="{{ Request::segment(1) ==  'band' ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
-                        Elements
+                        Band
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
-                            <a href="elements-buttons-standard.html">
+                            <a href="/band">
                                 <i class="metismenu-icon"></i>
-                                Buttons
+                                All Band
                             </a>
                         </li>
                         <li>
-                            <a href="elements-dropdowns.html">
-                                <i class="metismenu-icon">
-                                </i>Dropdowns
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-icons.html">
-                                <i class="metismenu-icon">
-                                </i>Icons
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-badges-labels.html">
-                                <i class="metismenu-icon">
-                                </i>Badges
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-cards.html">
-                                <i class="metismenu-icon">
-                                </i>Cards
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-list-group.html">
-                                <i class="metismenu-icon">
-                                </i>List Groups
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-navigation.html">
-                                <i class="metismenu-icon">
-                                </i>Navigation Menus
-                            </a>
-                        </li>
-                        <li>
-                            <a href="elements-utilities.html">
-                                <i class="metismenu-icon">
-                                </i>Utilities
+                            <a href="/band/create">
+                                <i class="metismenu-icon"></i>
+                                Create Band
                             </a>
                         </li>
                     </ul>
