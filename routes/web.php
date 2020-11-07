@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Dashboard\{DashboardController, BandController};
+use App\Http\Controllers\Backend\{DashboardController, BandController};
 
 
 Route::get('/', function () {

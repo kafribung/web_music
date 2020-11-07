@@ -1,4 +1,4 @@
-@extends('layouts.master_dash')
+@extends('layouts.master_dash', ['title' => 'Dashboard - Band Create'])
 @section('content')
 <div class="app-main__inner">
     <div class="app-page-title">
@@ -19,29 +19,9 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Controls Types</h5>
-                    <form action="{{ route('band.store') }}" enctype="multipart/form-data">
-                        <div class="position-relative form-group">
-                            <label for="email" class="">Img</label>
-                            <input name="img" id="email" placeholder="input your img" type="file" class="form-control" autofocus>
-                            @error('img')
-                                {{ $message }}
-                            @enderror
-                        </div>
-                        <div class="position-relative form-group">
-                            <label for="band" class="">Name</label>
-                            <input name="name" id="band" placeholder="band" type="text" class="form-control">
-                            @if ($errors)
-                                {{ $errors->first('name') }}
-                            @endif
-                        </div>
-                        <div class="position-relative form-group">
-                            <label for="genre" class="">Genre</label>
-                            <select multiple  name="genre[]" id="genre" class="form-control genre">
-                                @foreach ($genres as $genre)
-                                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <form action="{{ route('band.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <x-backend.band_form :band="new App\Models\Band" :genres="$genres"></x-backend.band_form>
                         <button class="float-right mt-1 btn btn-primary">Store</button>
                     </form>
                 </div>

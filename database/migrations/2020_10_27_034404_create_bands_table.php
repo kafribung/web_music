@@ -16,7 +16,7 @@ class CreateBandsTable extends Migration
         Schema::create('bands', function (Blueprint $table) {
             $table->id();
             $table->string('img')->nullable();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->string('slug');
             $table->timestamps();
         });
