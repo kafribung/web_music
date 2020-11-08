@@ -70,6 +70,8 @@ class BandController extends Controller
     // Destroy
     public function destroy($id)
     {
-        //
+        $band = Band::findOrFail($id);
+        Storage::delete($band->img);
+        $band->delete();
     }
 }

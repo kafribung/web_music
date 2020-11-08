@@ -15,4 +15,5 @@ Route::middleware('auth')->group(function(){
     Route::get('/dashboard', DashboardController::class);
     Route::resource('/band', BandController::class);
 });
+
 Route::get('/home', HomeController::class)->name('home');
