@@ -4,7 +4,7 @@
     <title>{{ $title ?? 'Dashboard' }}</title>
     @include('includes.meta_dash')
     @include('includes.css_dash')
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    @stack('css_select_two')
 </head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -23,6 +23,7 @@
         </div>
     </div>
     @include('includes.script_dash')
+    @stack('script_select_two')
 </body>
 
 </html>

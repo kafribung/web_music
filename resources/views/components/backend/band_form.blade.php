@@ -22,7 +22,7 @@
             @foreach ($band->genres as $genre)
                 <option  disabled value="{{ $genre->id }}">{{ $genre->name }}</option>
             @endforeach
-        </optgroup>
+        </optgroup>    
         <optgroup label="Select Genre">
         @foreach ($genres as $genre)
             <option  value="{{ $genre->id }}">{{ $genre->name }}</option>
