@@ -1,6 +1,6 @@
 <div class="position-relative form-group">
     <label for="album" class="">Name</label>
-    <input name="name" id="album" placeholder="album name" autocomplete="off" type="text" class="form-control" value="{{ old('name') ?? $album->name }}">
+    <input name="name" id="album" placeholder="album name" autofocus autocomplete="off" type="text" class="form-control" value="{{ old('name') ?? $album->name }}">
     @if ($errors->has('name'))
         <small class="text-danger">{{ $errors->first('name') }}</small>
     @endif
@@ -11,7 +11,11 @@
         <optgroup label="Select Band">
             <option  selected disabled >All Band</option>
             @foreach ($bands as $band)
-                <option  {{ old('band_id') == $band->id ? 'selected' : '' }} value="{{ $band->id }}">{{ $band->name }}</option>
+                @if (!$album->band)
+                <option  {{ old('band_id') == $band->id? 'selected' : '' }} value="{{ $band->id }}">{{ $band->name }}</option>
+                @else
+                <option  {{ old('band_id') == $band->id || $album->band->id == $band->id ? 'selected' : '' }} value="{{ $band->id }}">{{ $band->name }}</option>
+                @endif
             @endforeach
         </optgroup>
     </select>
@@ -24,7 +28,7 @@
     <select  name="year" id="year" class="form-control genre">
         <option  selected disabled >Year Select</option>
         @for ($i = date('Y'); $i >= 1910; $i--)
-            <option {{ old('year')  == $i ? 'selected' : '' }} value="{{ $i }}">{{ $i }}</option>
+            <option {{ old('year')  == $i || $album->year == $i ? 'selected' : '' }} value="{{ $i }}">{{ $i }}</option>
         @endfor
     </select>
     @error('year')

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\AlbumRequest;
 use App\Models\Album;
+use Illuminate\Cache\RedisTaggedCache;
 
 class AlbumController extends Controller
 {
@@ -45,18 +46,26 @@ class AlbumController extends Controller
     // Edit
     public function edit(Album $album)
     {
-        return view()
+        $bands = Band::latest()->get();
+        return view('backend_edit.album_edit', compact('album', 'bands'));
     }
 
     // / Update
-    public function update(Request $request, $id)
+    public function update(AlbumRequest $request, Album $album)
     {
-        //
+        $data = $request->validated();
+        $data['slug'] = \Str::slug($request->name);
+        if (Album::where('slug', $data['slug'])->first() != null) {
+            $data['slug'] .= time();
+        }
+        $album->update($data);
+        return redirect('/albums')->with('msg', 'album successfully edit');
     }
 
     // Destroy
     public function destroy($id)
     {
-        //
+        $album = Album::findOrFail($id);
+        $album->delete();
     }
 }

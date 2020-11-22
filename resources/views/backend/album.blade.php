@@ -80,9 +80,9 @@
                                     icon: "success",
                                 });
                                 axios
-                                    .delete(`/Album/${id}`)
+                                    .delete(`/albums/${id}`)
                                     .then((response) => {
-                                        console.log(response.data)
+                                        location.reload()
                                     });
                                 this.$refs.delete.parentNode.parentNode.remove();
                             } else {
