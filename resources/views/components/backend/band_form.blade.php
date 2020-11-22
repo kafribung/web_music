@@ -33,3 +33,4 @@
         <small class="alert alert-danger">{{ $message }}</small>
     @enderror
 </div>
+<button class="float-right mt-1 btn {{ $button  == 'create' ? 'btn-primary' : 'btn-warning'}}">{{ $button  == 'create' ? 'Store' : 'Update' }}</button>

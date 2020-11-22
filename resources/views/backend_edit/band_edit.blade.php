@@ -19,11 +19,13 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Controls Types</h5>
-                    <form action="{{ route('band.update', $band->slug) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('bands.update', $band->slug) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
-                        <x-backend.band_form :band="$band" :genres="$genres"></x-backend.band_form>
-                        <button class="float-right mt-1 btn btn-warning">Update</button>
+                        @php
+                            $update = 'update';
+                        @endphp
+                        <x-backend.band_form :band="$band" :genres="$genres" :button="$update"></x-backend.band_form>
                     </form>
                 </div>
             </div>

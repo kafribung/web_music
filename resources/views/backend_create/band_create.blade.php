@@ -19,10 +19,12 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Controls Types</h5>
-                    <form action="{{ route('band.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('bands.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <x-backend.band_form :band="new App\Models\Band" :genres="$genres"></x-backend.band_form>
-                        <button class="float-right mt-1 btn btn-primary">Store</button>
+                        @php
+                            $create = 'create'
+                        @endphp
+                        <x-backend.band_form :band="new App\Models\Band" :genres="$genres"  :button="$create"></x-backend.band_form>
                     </form>
                 </div>
             </div>

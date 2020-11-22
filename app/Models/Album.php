@@ -9,6 +9,17 @@ class Album extends Model
 {
     use HasFactory;
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
     // Relation many to one (Band)
     public function band()
     {

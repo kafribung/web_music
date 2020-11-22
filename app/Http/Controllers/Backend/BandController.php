@@ -35,7 +35,7 @@ class BandController extends Controller
         $band = Band::create($data);
         // Eloquent many to many
         $band->genres()->attach($request->genre);
-        return redirect('/band')->with('msg', 'band successfully add');
+        return redirect('/bands')->with('msg', 'band successfully add');
     }
 
     // Show
@@ -64,7 +64,7 @@ class BandController extends Controller
         $band->update($data);
         // Eloquent Many to many
         $band->genres()->sync($request->genre);
-        return redirect('/band')->with('msg', 'Band Success Updated');
+        return redirect('/bands')->with('msg', 'Band Success Updated');
     }
 
     // Destroy

@@ -32,6 +32,7 @@
     </div>
     <div class="scrollbar-sidebar">
         <div class="app-sidebar__inner">
+
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Dashboards</li>
                 <li>
@@ -42,20 +43,20 @@
                 </li>
                 <li class="app-sidebar__heading">Akses Kontrol</li>
                 <li>
-                    <a href="" class="{{ Request::segment(1) ==  'band' ? 'mm-active' : '' }}">
+                    <a href="" class="{{ Request::segment(1) ==  'bands' || Request::segment(1) ==  'bands/*'  ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-diamond"></i>
-                        Band
+                        Bands
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
-                            <a href="/band">
+                            <a href="{{ route('bands.index') }}">
                                 <i class="metismenu-icon"></i>
                                 All Band
                             </a>
                         </li>
                         <li>
-                            <a href="/band/create">
+                            <a href="{{ route('bands.create') }}">
                                 <i class="metismenu-icon"></i>
                                 Create Band
                             </a>
@@ -63,76 +64,22 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#" class="{{ Request::segment(1) ==  'albums' || Request::segment(1) ==  'albums/*'  ? 'mm-active' : '' }}">
                         <i class="metismenu-icon pe-7s-car"></i>
-                        Components
+                        Albums
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                     </a>
                     <ul>
                         <li>
-                            <a href="components-tabs.html">
+                            <a href="{{ route('albums.index') }}">
                                 <i class="metismenu-icon">
-                                </i>Tabs
+                                </i>All Album
                             </a>
                         </li>
                         <li>
-                            <a href="components-accordions.html">
+                            <a href="{{ route('albums.create') }}">
                                 <i class="metismenu-icon">
-                                </i>Accordions
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-notifications.html">
-                                <i class="metismenu-icon">
-                                </i>Notifications
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-modals.html">
-                                <i class="metismenu-icon">
-                                </i>Modals
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-progress-bar.html">
-                                <i class="metismenu-icon">
-                                </i>Progress Bar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-tooltips-popovers.html">
-                                <i class="metismenu-icon">
-                                </i>Tooltips &amp; Popovers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-carousel.html">
-                                <i class="metismenu-icon">
-                                </i>Carousel
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-calendar.html">
-                                <i class="metismenu-icon">
-                                </i>Calendar
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-pagination.html">
-                                <i class="metismenu-icon">
-                                </i>Pagination
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-scrollable-elements.html">
-                                <i class="metismenu-icon">
-                                </i>Scrollable
-                            </a>
-                        </li>
-                        <li>
-                            <a href="components-maps.html">
-                                <i class="metismenu-icon">
-                                </i>Maps
+                                </i>Create Album
                             </a>
                         </li>
                     </ul>
