@@ -24,7 +24,7 @@ class AlbumRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:20'],
+            'name' => ['required', 'string', 'min:3', 'max:20', 'unique:albums,name,'. optional($this->album)->id],
             'year' => ['required', 'string', 'max:4'],
             'band_id' => ['required', 'integer'],
         ];

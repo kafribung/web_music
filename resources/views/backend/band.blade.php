@@ -86,7 +86,7 @@
                                     icon: "success",
                                 });
                                 axios
-                                    .delete(`/band/${id}`)
+                                    .delete(`/bands/${id}`)
                                     .then((response) => {
                                         console.log(response.data)
                                     });

@@ -25,7 +25,6 @@ class BandRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:20', 'unique:bands,name,' . optional($this->band)->id],
-            // 'name' => 'required|string|min:3|max:20|unique:bands,name,' . optional($this->band)->id,
             'img'  => ['required', 'mimes:png,jpg,jpeg'],
         ];
     }
