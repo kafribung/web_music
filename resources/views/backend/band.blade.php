@@ -51,7 +51,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('bands.edit', $band->slug) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                                <button ref="delete" v-on:click="deleteBand({{ $band->id }})" class="btn btn-danger btn-sm d-inline-block"><i class="fa fa-trash"></i></button>
+                                <delete :id={{ $band->id }}></delete>
                             </td>
                         </tr>    
                         @empty
@@ -64,40 +64,4 @@
         </div>
     </div>
 </div>
-@push('script_vue_js_axios_sweet')
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>   
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            methods: {
-                deleteBand(id) {
-                    swal({
-                            title: "Are you sure?",
-                            text: "Once deleted, you will not be able to recover this imaginary file!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                            })
-                            .then((willDelete) => {
-                            if (willDelete) {
-                                swal("Poof! Your imaginary file has been deleted!", {
-                                    icon: "success",
-                                });
-                                axios
-                                    .delete(`/bands/${id}`)
-                                    .then((response) => {
-                                        console.log(response.data)
-                                    });
-                                this.$refs.delete.parentNode.parentNode.remove();
-                            } else {
-                                swal("Your imaginary file is safe!");
-                            }
-                        });
-                }
-            },
-        })
-    </script>
-@endpush
 @stop
