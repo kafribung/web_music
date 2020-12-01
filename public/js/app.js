@@ -49810,7 +49810,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('delete', __webpack_require__(/*! ./components/Delete.vue */ "./resources/js/components/Delete.vue")["default"]);
+Vue.component('delete-component', __webpack_require__(/*! ./components/Delete.vue */ "./resources/js/components/Delete.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

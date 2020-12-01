@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <title>{{ $title ?? 'Dashboard' }}</title>
-    <script src="{{ asset('js/app.js') }}" defer></script>
     @include('includes.meta_dash')
     @include('includes.css_dash')
+    @stack('script_vue')
     @stack('css_select_two')
 </head>
 <body>
@@ -25,8 +25,6 @@
     </div>
     @include('includes.script_dash')
     @stack('script_select_two')
-    {{-- @stack('script_vue_js_axios_sweet') --}}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @stack('script_sweetalert')
 </body>
-
 </html>

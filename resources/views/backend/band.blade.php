@@ -51,7 +51,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('bands.edit', $band->slug) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                                <delete :id={{ $band->id }}></delete>
+                                <delete-component :id={{ $band->id }}></delete-component>
                             </td>
                         </tr>    
                         @empty
@@ -64,4 +64,10 @@
         </div>
     </div>
 </div>
+@push('script_vue')
+    <script src="{{ asset('js/app.js') }}" defer></script>
+@endpush
+@push('script_sweetalert')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@endpush
 @stop
