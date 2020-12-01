@@ -51,7 +51,7 @@
                             </td>
                             <td>
                                 <a href="{{ route('bands.edit', $band->slug) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                                <delete-component :id={{ $band->id }}></delete-component>
+                                <delete-component :route={{ json_encode(route('bands.destroy', $band->id)) }} :id={{ $band->id }}></delete-component>
                             </td>
                         </tr>    
                         @empty

@@ -45,7 +45,7 @@
                             <td>{{ $album->year }}</td>
                             <td>
                                 <a href="{{ route('albums.edit', $album->slug) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                                <button ref="delete" v-on:click="deleteAlbum({{ $album->id }})" class="btn btn-danger btn-sm d-inline-block"><i class="fa fa-trash"></i></button>
+                                <delete-component :route="{{ json_encode(route('albums.destroy', $album->id)) }}"></delete-component>
                             </td>
                         </tr>    
                         @empty
@@ -58,40 +58,10 @@
         </div>
     </div>
 </div>
-@push('script_vue_js_axios_sweet')
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>   
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        var app = new Vue({
-            el: '#app',
-            methods: {
-                deleteAlbum(id) {
-                    swal({
-                            title: "Are you sure?",
-                            text: "Once deleted, you will not be able to recover this imaginary file!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                            })
-                            .then((willDelete) => {
-                            if (willDelete) {
-                                swal("Poof! Your imaginary file has been deleted!", {
-                                    icon: "success",
-                                });
-                                axios
-                                    .delete(`/albums/${id}`)
-                                    .then((response) => {
-                                        location.reload()
-                                    });
-                                this.$refs.delete.parentNode.parentNode.remove();
-                            } else {
-                                swal("Your imaginary file is safe!");
-                            }
-                        });
-                }
-            },
-        })
-    </script>
+@push('script_vue')
+    <script src="{{ asset('js/app.js') }}" defer></script>
+@endpush
+@push('script_sweetalert')
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endpush
 @stop

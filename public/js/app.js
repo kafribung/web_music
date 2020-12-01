@@ -1914,12 +1914,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Delete',
-  props: ['id'],
+  props: ['route'],
   methods: {
     deleteBand: function deleteBand(id) {
       var _this = this;
 
-      console.log(id);
       swal({
         title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -1931,7 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
           swal("Poof! Your imaginary file has been deleted!", {
             icon: "success"
           });
-          axios["delete"]("/bands/".concat(id)).then(function (response) {
+          axios["delete"](_this.route).then(function (response) {
             console.log(response.data);
           });
 
@@ -37576,7 +37575,7 @@ var render = function() {
       staticClass: "btn btn-danger btn-sm d-inline-block",
       on: {
         click: function($event) {
-          return _vm.deleteBand(_vm.id)
+          return _vm.deleteBand()
         }
       }
     },
