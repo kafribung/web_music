@@ -5,6 +5,9 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('delete-component', require('./components/Delete.vue').default);
 
+// Liric
+Vue.component('liric-component', require('./components/liric/Liric').default);
+Vue.component('liric-create-component', require('./components/liric/Create').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

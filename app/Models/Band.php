@@ -26,6 +26,12 @@ class Band extends Model
         return $this->belongsToMany(Genre::class);
     }
 
+    // Relation one to many (Liric)
+    public function lirics()
+    {
+        return $this->hasMany(Liric::class);
+    }
+
     // Mutator
     public function getTakeImgAttribute()
     {

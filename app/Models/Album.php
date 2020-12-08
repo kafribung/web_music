@@ -25,9 +25,10 @@ class Album extends Model
     {
         return $this->belongsTo(Band::class);
     }
+    
     // Relation one to many (Liric)
     public function lirics()
     {
-        return $this->hasMany(Lirics::class);
+        return $this->hasMany(Liric::class);
     }
 }
