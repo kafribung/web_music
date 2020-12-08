@@ -1,6 +1,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+let CKEditor = require('@ckeditor/ckeditor5-vue2');     
+Vue.use(CKEditor)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('delete-component', require('./components/Delete.vue').default);

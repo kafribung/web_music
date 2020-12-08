@@ -19,7 +19,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Controls Types</h5>
-                    <liric-create-component></liric-create-component>
+                    <liric-create-component :bands="{{ json_encode($bands) }}" :albums="{{ json_encode($albums) }}"></liric-create-component>
                 </div>
             </div>
         </div>

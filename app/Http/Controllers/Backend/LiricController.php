@@ -17,8 +17,8 @@ class LiricController extends Controller
     // CREATE
     public function create()
     {
-        $bands = Band::get();
-        $albums= Album::get();
+        $bands = Band::get(['id','name']);
+        $albums= Album::get(['id', 'name']);
         return view('backend_create.liric_create', compact('bands', 'albums'));
     }
 
