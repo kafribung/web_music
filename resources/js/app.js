@@ -1,8 +1,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+// CkEditor
 let CKEditor = require('@ckeditor/ckeditor5-vue2');     
 Vue.use(CKEditor)
+// Toast
+import Toasted from 'vue-toasted';
+Vue.use(Toasted)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('delete-component', require('./components/Delete.vue').default);

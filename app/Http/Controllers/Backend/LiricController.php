@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\{Album,  Band, Liric};
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\LiricRequest;
+use Illuminate\Http\Request;
 
 class LiricController extends Controller
 {
@@ -23,9 +25,18 @@ class LiricController extends Controller
     }
 
     // STORE
-    public function store()
+    public function store(LiricRequest $request)
     {
-        dd('ok');
+        try {
+            $data = $request->validated();
+            $data['band_id'] = $request->band;
+            $data['album_id'] = $request->album;
+            $data['slug'] = \Str::slug($request->title) ;
+            Liric::create($data);
+            return response(['msg' => 'The liric was created successfully'], 201);
+        } catch (\Throwable $th) {
+            return response(['msg' => $th->getMessage()], 400);
+        }
     }
 
 }
