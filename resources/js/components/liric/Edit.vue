@@ -7,7 +7,7 @@
         </div>
         <div class="position-relative form-group">
             <label for="band" class="">Band</label>
-            <select  id="band"  class="form-control">
+            <select  v-model="liric.band_id" id="band"  class="form-control">
                 <option :value="liric.band_id" v-text="liric.band.name"></option>
                 <template v-for="band in bands">
                     <option  v-if="liric.band_id !== band.id" :key="band.id" :value="band.id">{{ band.name }}</option>
@@ -18,9 +18,9 @@
         <div class="position-relative form-group">
             <label for="album" class="">Album</label>
             <select v-model="liric.album_id" id="album"  class="form-control">
+                <option :value="liric.album.id" v-text="liric.album.name"></option>
                 <template v-for="album in albums">
-                    <!-- <option  v-if="liric.album !== album.id" :key="index" :value="album.id" >{{ album.name }}</option> -->
-                    <option v-if="liric.album_id != album.id" :key="album.id" :value="album.id">{{ album.name }}</option>
+                    <option v-if="liric.album_id !== album.id" :key="album.id" :value="album.id">{{ album.name }}</option>
                 </template>
             </select>
             <small v-if="validation.album" class="text-danger">{{ validation.album[0] }}</small>
@@ -40,16 +40,27 @@ export default {
     data() {
         return {
             'editor' : ClassicEditor,
+            setLiric : {},
             validation : {},
         }
     },
     props: ['liric', 'bands', 'albums', 'liric-update'],
     created(){
-        console.log(this.liric.band)
+        // console.log(this.liric.band)
     },
     methods: {
         updateLiric(){
-            alert('ok');
+            axios.patch(this.liricUpdate, this.liric)
+            .then(response => {
+                this.$toasted.success(response.data.msg, {
+                    duration : 3600
+                })
+                window.location.replace('/lirics')
+            })
+            .catch(error => {
+                this.validation = error.response.data.errors
+                this.$toasted.error('Error validation')
+            })
         }
     },
 }

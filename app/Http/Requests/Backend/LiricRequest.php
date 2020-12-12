@@ -24,9 +24,9 @@ class LiricRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'   => 'required|string|min:5|max:20',
-            'band'    => 'required|max:3',           
-            'album'   => 'required|max:3',           
+            'title'   => 'required|string|min:5|max:50',
+            'band'    => 'required',           
+            'album'   => 'required',           
             'body'    => 'required|string',           
         ];
     }

@@ -23,9 +23,8 @@ export default {
                         axios
                             .delete(this.route)
                             .then((response) => {
-                                console.log(response.data)
+                                this.$refs.delete.parentNode.parentNode.remove();
                             });
-                        this.$refs.delete.parentNode.parentNode.remove();
                     } else {
                         swal("Your imaginary file is safe!");
                     }

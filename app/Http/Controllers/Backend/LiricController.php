@@ -47,4 +47,31 @@ class LiricController extends Controller
         $albums= Album::get(['id', 'name']);
         return view('backend_edit.liric_edit', compact('liric', 'bands', 'albums'));
     }
+
+    // UPDATE
+    public function update(LiricRequest $request, Liric $liric)
+    {
+        try {
+            $data = $request->validated();
+            $data['band_id'] = $request->band_id;
+            $data['album_id'] = $request->album_id;
+            $data['slug'] = \Str::slug($request->title);
+            $liric->update($data);
+            return response(['msg' => 'The liric was updated successfully'], 200);
+        } catch (\Throwable $th) {
+            return response(['msg' => $th->getMessage()], 400);
+        }       
+    }
+
+    // DELETE
+    public function destroy(Liric $liric)
+    {
+        try {
+            $liric->delete();
+            return response()->json(['msg' => 'the data was delete successfully'], 204);
+        } catch (\Throwable $th) {
+            return response()->json(['msg' => $th->getMessage()], 400);
+        }
+
+    }
 }

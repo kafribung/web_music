@@ -8,6 +8,7 @@
         <div class="position-relative form-group">
             <label for="band" class="">Band</label>
             <select v-model="liric.band" id="band"  class="form-control">
+                <option selected disabled>Option Band</option>
                 <option  v-for="(band, index) in bands" :key="index" :value="band.id" >{{ band.name }}</option>
             </select>
             <small v-if="validation.band" class="text-danger">{{ validation.band[0] }}</small>
@@ -15,6 +16,7 @@
         <div class="position-relative form-group">
             <label for="album" class="">Album</label>
             <select v-model="liric.album" id="album"  class="form-control">
+                <option selected disabled>Option ALbum</option>
                 <option  v-for="(album, index) in albums" :key="index" :value="album.id" >{{ album.name }}</option>
             </select>
             <small v-if="validation.album" class="text-danger">{{ validation.album[0] }}</small>
@@ -52,6 +54,7 @@ export default {
                     type: "success",
                     duration: 3000,
                 })
+                window.location.replace('/lirics')
             })
             .catch(error =>  {
                 this.validation = error.response.data.errors

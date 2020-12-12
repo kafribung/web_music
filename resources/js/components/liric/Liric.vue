@@ -20,7 +20,7 @@
                     <td>{{ liric.slug }}</td>
                     <td>
                         <a :href="/lirics/+ liric.slug + '/edit'" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                        <Delete :route="1"></Delete>
+                        <Delete :route="/lirics/+liric.slug"></Delete>
                     </td>
                 </tr>    
             </tbody>

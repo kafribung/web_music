@@ -1963,10 +1963,8 @@ __webpack_require__.r(__webpack_exports__);
             icon: "success"
           });
           axios["delete"](_this.route).then(function (response) {
-            console.log(response.data);
+            _this.$refs["delete"].parentNode.parentNode.remove();
           });
-
-          _this.$refs["delete"].parentNode.parentNode.remove();
         } else {
           swal("Your imaginary file is safe!");
         }
@@ -2051,6 +2049,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2075,6 +2075,8 @@ __webpack_require__.r(__webpack_exports__);
           type: "success",
           duration: 3000
         });
+
+        window.location.replace('/lirics');
       })["catch"](function (error) {
         _this.validation = error.response.data.errors;
 
@@ -2138,16 +2140,28 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       'editor': _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_0___default.a,
+      setLiric: {},
       validation: {}
     };
   },
   props: ['liric', 'bands', 'albums', 'liric-update'],
-  created: function created() {
-    console.log(this.liric.band);
+  created: function created() {// console.log(this.liric.band)
   },
   methods: {
     updateLiric: function updateLiric() {
-      alert('ok');
+      var _this = this;
+
+      axios.patch(this.liricUpdate, this.liric).then(function (response) {
+        _this.$toasted.success(response.data.msg, {
+          duration: 3600
+        });
+
+        window.location.replace('/lirics');
+      })["catch"](function (error) {
+        _this.validation = error.response.data.errors;
+
+        _this.$toasted.error('Error validation');
+      });
     }
   }
 });
@@ -37963,12 +37977,20 @@ var render = function() {
               }
             }
           },
-          _vm._l(_vm.bands, function(band, index) {
-            return _c("option", { key: index, domProps: { value: band.id } }, [
-              _vm._v(_vm._s(band.name))
-            ])
-          }),
-          0
+          [
+            _c("option", { attrs: { selected: "", disabled: "" } }, [
+              _vm._v("Option Band")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.bands, function(band, index) {
+              return _c(
+                "option",
+                { key: index, domProps: { value: band.id } },
+                [_vm._v(_vm._s(band.name))]
+              )
+            })
+          ],
+          2
         ),
         _vm._v(" "),
         _vm.validation.band
@@ -38012,12 +38034,20 @@ var render = function() {
               }
             }
           },
-          _vm._l(_vm.albums, function(album, index) {
-            return _c("option", { key: index, domProps: { value: album.id } }, [
-              _vm._v(_vm._s(album.name))
-            ])
-          }),
-          0
+          [
+            _c("option", { attrs: { selected: "", disabled: "" } }, [
+              _vm._v("Option ALbum")
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.albums, function(album, index) {
+              return _c(
+                "option",
+                { key: index, domProps: { value: album.id } },
+                [_vm._v(_vm._s(album.name))]
+              )
+            })
+          ],
+          2
         ),
         _vm._v(" "),
         _vm.validation.album
@@ -38141,7 +38171,35 @@ var render = function() {
         _vm._v(" "),
         _c(
           "select",
-          { staticClass: "form-control", attrs: { id: "band" } },
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.liric.band_id,
+                expression: "liric.band_id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "band" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.liric,
+                  "band_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
           [
             _c("option", {
               domProps: {
@@ -38207,9 +38265,16 @@ var render = function() {
             }
           },
           [
+            _c("option", {
+              domProps: {
+                value: _vm.liric.album.id,
+                textContent: _vm._s(_vm.liric.album.name)
+              }
+            }),
+            _vm._v(" "),
             _vm._l(_vm.albums, function(album) {
               return [
-                _vm.liric.album_id != album.id
+                _vm.liric.album_id !== album.id
                   ? _c(
                       "option",
                       { key: album.id, domProps: { value: album.id } },
@@ -38328,7 +38393,7 @@ var render = function() {
                   [_c("i", { staticClass: "fa fa-edit" })]
                 ),
                 _vm._v(" "),
-                _c("Delete", { attrs: { route: 1 } })
+                _c("Delete", { attrs: { route: /lirics/ + liric.slug } })
               ],
               1
             )
