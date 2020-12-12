@@ -8,6 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Liric extends Model
 {
     use HasFactory;
+    // Tuches
+    protected $touches = ['band', 'album'];
+
+    // Route Key Name
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    // Eger Loading
+    protected $with = ['band', 'album'];
+    
     protected $guarded = [
         'id',
         'created_at',

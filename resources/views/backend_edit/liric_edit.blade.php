@@ -1,4 +1,4 @@
-@extends('layouts.master_dash', ['title' => 'Dashboard - Liric'])
+@extends('layouts.master_dash', ['title' => 'Dashboard - Liric Edit'])
 @section('content')
 <div class="app-main__inner" id="app">
     <div class="app-page-title">
@@ -8,23 +8,18 @@
                     <i class="pe-7s-display1 icon-gradient bg-premium-dark">
                     </i>
                 </div>
-                <div>liric
-                    <div class="page-title-subheading"> All liric data.</div>
+                <div>Liric Edit
+                    <div class="page-title-subheading">Edit data liric.</div>
                 </div>
             </div>
         </div>
     </div>
-    @if (session('msg'))
-    <div class="row">
-        <p class="alert alert-success">{{  session('msg') }}</p>
-    </div>
-    @endif
     <div class="row">
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Table with hover</h5>
-                    <liric-component :lirics="{{ json_encode($lirics) }}" :liric-create="{{ json_encode(route('lirics.create')) }}"></liric-component>
+                    <h5 class="card-title">Controls Types</h5>
+                    <liric-edit-component :liric="{{ json_encode($liric) }}" :bands="{{ json_encode($bands) }}" :albums="{{ json_encode($albums) }}" :liric-update="{{ json_encode(route('lirics.update', $liric->slug)) }}"></liric-edit-component>
                 </div>
             </div>
         </div>
@@ -33,7 +28,4 @@
 @push('script_vue')
     <script src="{{ asset('js/app.js') }}" defer></script>
 @endpush
-@push('script_sweetalert')
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-@endpush
-@stop
+@endsection

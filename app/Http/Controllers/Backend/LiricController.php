@@ -39,4 +39,12 @@ class LiricController extends Controller
         }
     }
 
+    // EDIT
+    public function edit(Liric $liric)
+    {
+        // $liric = Liric::with('band', 'album')->where('slug', $slug)->first();
+        $bands = Band::get(['id','name']);
+        $albums= Album::get(['id', 'name']);
+        return view('backend_edit.liric_edit', compact('liric', 'bands', 'albums'));
+    }
 }

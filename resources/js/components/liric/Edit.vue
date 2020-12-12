@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="createLiric">
+    <form @submit.prevent="updateLiric">
         <div class="position-relative form-group">
             <label for="title" class="">Judul</label>
             <input v-model="liric.title" id="title" placeholder="title" autofocus autocomplete="off" type="text" class="form-control">
@@ -7,15 +7,21 @@
         </div>
         <div class="position-relative form-group">
             <label for="band" class="">Band</label>
-            <select v-model="liric.band" id="band"  class="form-control">
-                <option  v-for="(band, index) in bands" :key="index" :value="band.id" >{{ band.name }}</option>
+            <select  id="band"  class="form-control">
+                <option :value="liric.band_id" v-text="liric.band.name"></option>
+                <template v-for="band in bands">
+                    <option  v-if="liric.band_id !== band.id" :key="band.id" :value="band.id">{{ band.name }}</option>
+                </template>
             </select>
             <small v-if="validation.band" class="text-danger">{{ validation.band[0] }}</small>
         </div>
         <div class="position-relative form-group">
             <label for="album" class="">Album</label>
-            <select v-model="liric.album" id="album"  class="form-control">
-                <option  v-for="(album, index) in albums" :key="index" :value="album.id" >{{ album.name }}</option>
+            <select v-model="liric.album_id" id="album"  class="form-control">
+                <template v-for="album in albums">
+                    <!-- <option  v-if="liric.album !== album.id" :key="index" :value="album.id" >{{ album.name }}</option> -->
+                    <option v-if="liric.album_id != album.id" :key="album.id" :value="album.id">{{ album.name }}</option>
+                </template>
             </select>
             <small v-if="validation.album" class="text-danger">{{ validation.album[0] }}</small>
         </div>
@@ -24,7 +30,7 @@
             <ckeditor :editor="editor" v-model="liric.body" id="body" placeholder="title" class="form-control" ></ckeditor>
             <small v-if="validation.body" class="text-danger">{{ validation.body[0] }}</small>
         </div>
-        <button type="submit" class="btn btn-primary btn-sm float-right">Store</button>
+        <button type="submit" class="btn btn-warning btn-sm float-right">Edit</button>
     </form>
 </template>
 
@@ -34,29 +40,16 @@ export default {
     data() {
         return {
             'editor' : ClassicEditor,
-            liric : {
-                'title'   : '',
-                'band' : '',
-                'album' : '',
-                'body'    : '',
-            },
             validation : {},
         }
     },
-    props: ['bands', 'albums', 'liric-store'],
+    props: ['liric', 'bands', 'albums', 'liric-update'],
+    created(){
+        console.log(this.liric.band)
+    },
     methods: {
-        createLiric() {
-            axios.post(this.liricStore, this.liric)
-            .then((response) => {
-                this.$toasted.show(response.data.msg, {
-                    type: "success",
-                    duration: 3000,
-                })
-            })
-            .catch(error =>  {
-                this.validation = error.response.data.errors
-                this.$toasted.error('Error validation')
-            });
+        updateLiric(){
+            alert('ok');
         }
     },
 }

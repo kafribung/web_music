@@ -2067,7 +2067,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: ['bands', 'albums', 'liric-store'],
   methods: {
-    setDataLiric: function setDataLiric() {
+    createLiric: function createLiric() {
       var _this = this;
 
       axios.post(this.liricStore, this.liric).then(function (response) {
@@ -2080,6 +2080,74 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$toasted.error('Error validation');
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/liric/Edit.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/liric/Edit.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ckeditor/ckeditor5-build-classic */ "./node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js");
+/* harmony import */ var _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      'editor': _ckeditor_ckeditor5_build_classic__WEBPACK_IMPORTED_MODULE_0___default.a,
+      validation: {}
+    };
+  },
+  props: ['liric', 'bands', 'albums', 'liric-update'],
+  created: function created() {
+    console.log(this.liric.band);
+  },
+  methods: {
+    updateLiric: function updateLiric() {
+      alert('ok');
     }
   }
 });
@@ -2128,12 +2196,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['lirics', 'route-create'],
+  props: ['lirics', 'liric-create'],
   components: {
     Delete: _Delete__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mounted: function mounted() {
-    console.log('Dela');
+    console.log('ol');
   }
 });
 
@@ -37818,7 +37886,7 @@ var render = function() {
       on: {
         submit: function($event) {
           $event.preventDefault()
-          return _vm.setDataLiric($event)
+          return _vm.createLiric($event)
         }
       }
     },
@@ -38004,6 +38072,208 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/liric/Edit.vue?vue&type=template&id=77e16d55&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/liric/Edit.vue?vue&type=template&id=77e16d55& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.updateLiric($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "position-relative form-group" }, [
+        _c("label", { attrs: { for: "title" } }, [_vm._v("Judul")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.liric.title,
+              expression: "liric.title"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            id: "title",
+            placeholder: "title",
+            autofocus: "",
+            autocomplete: "off",
+            type: "text"
+          },
+          domProps: { value: _vm.liric.title },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.liric, "title", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.validation.title
+          ? _c("small", { staticClass: "text-danger" }, [
+              _vm._v(_vm._s(_vm.validation.title[0]))
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "position-relative form-group" }, [
+        _c("label", { attrs: { for: "band" } }, [_vm._v("Band")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          { staticClass: "form-control", attrs: { id: "band" } },
+          [
+            _c("option", {
+              domProps: {
+                value: _vm.liric.band_id,
+                textContent: _vm._s(_vm.liric.band.name)
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.bands, function(band) {
+              return [
+                _vm.liric.band_id !== band.id
+                  ? _c(
+                      "option",
+                      { key: band.id, domProps: { value: band.id } },
+                      [_vm._v(_vm._s(band.name))]
+                    )
+                  : _vm._e()
+              ]
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _vm.validation.band
+          ? _c("small", { staticClass: "text-danger" }, [
+              _vm._v(_vm._s(_vm.validation.band[0]))
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "position-relative form-group" }, [
+        _c("label", { attrs: { for: "album" } }, [_vm._v("Album")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.liric.album_id,
+                expression: "liric.album_id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "album" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.liric,
+                  "album_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _vm._l(_vm.albums, function(album) {
+              return [
+                _vm.liric.album_id != album.id
+                  ? _c(
+                      "option",
+                      { key: album.id, domProps: { value: album.id } },
+                      [_vm._v(_vm._s(album.name))]
+                    )
+                  : _vm._e()
+              ]
+            })
+          ],
+          2
+        ),
+        _vm._v(" "),
+        _vm.validation.album
+          ? _c("small", { staticClass: "text-danger" }, [
+              _vm._v(_vm._s(_vm.validation.album[0]))
+            ])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "position-relative form-group" },
+        [
+          _c("label", { attrs: { for: "body" } }, [_vm._v("Lirik")]),
+          _vm._v(" "),
+          _c("ckeditor", {
+            staticClass: "form-control",
+            attrs: { editor: _vm.editor, id: "body", placeholder: "title" },
+            model: {
+              value: _vm.liric.body,
+              callback: function($$v) {
+                _vm.$set(_vm.liric, "body", $$v)
+              },
+              expression: "liric.body"
+            }
+          }),
+          _vm._v(" "),
+          _vm.validation.body
+            ? _c("small", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(_vm.validation.body[0]))
+              ])
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-warning btn-sm float-right",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Edit")]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/liric/Liric.vue?vue&type=template&id=65ae1634&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/liric/Liric.vue?vue&type=template&id=65ae1634& ***!
@@ -38024,7 +38294,7 @@ var render = function() {
       "a",
       {
         staticClass: "btn btn-primary btn-sm float-right",
-        attrs: { href: _vm.routeCreate }
+        attrs: { href: _vm.liricCreate }
       },
       [_c("i", { staticClass: "fa fa-plus" })]
     ),
@@ -38035,7 +38305,7 @@ var render = function() {
       _c(
         "tbody",
         _vm._l(_vm.lirics, function(liric, index) {
-          return _c("tr", { key: liric.title }, [
+          return _c("tr", { key: index }, [
             _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(liric.title))]),
@@ -38044,12 +38314,19 @@ var render = function() {
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(liric.album.name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(liric.band.name))]),
+            _c("td", [_vm._v(_vm._s(liric.slug))]),
             _vm._v(" "),
             _c(
               "td",
               [
-                _vm._m(1, true),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-warning btn-sm",
+                    attrs: { href: /lirics/ + liric.slug + "/edit" }
+                  },
+                  [_c("i", { staticClass: "fa fa-edit" })]
+                ),
                 _vm._v(" "),
                 _c("Delete", { attrs: { route: 1 } })
               ],
@@ -38080,16 +38357,6 @@ var staticRenderFns = [
         _c("th", [_vm._v("Band")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      { staticClass: "btn btn-warning btn-sm", attrs: { href: "" } },
-      [_c("i", { staticClass: "fa fa-edit" })]
-    )
   }
 ]
 render._withStripped = true
@@ -50297,6 +50564,7 @@ Vue.component('delete-component', __webpack_require__(/*! ./components/Delete.vu
 
 Vue.component('liric-component', __webpack_require__(/*! ./components/liric/Liric */ "./resources/js/components/liric/Liric.vue")["default"]);
 Vue.component('liric-create-component', __webpack_require__(/*! ./components/liric/Create */ "./resources/js/components/liric/Create.vue")["default"]);
+Vue.component('liric-edit-component', __webpack_require__(/*! ./components/liric/Edit */ "./resources/js/components/liric/Edit.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50556,6 +50824,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_222f3687___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Create_vue_vue_type_template_id_222f3687___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/liric/Edit.vue":
+/*!************************************************!*\
+  !*** ./resources/js/components/liric/Edit.vue ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_77e16d55___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=77e16d55& */ "./resources/js/components/liric/Edit.vue?vue&type=template&id=77e16d55&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/components/liric/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_77e16d55___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_77e16d55___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/liric/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/liric/Edit.vue?vue&type=script&lang=js&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/liric/Edit.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/liric/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/liric/Edit.vue?vue&type=template&id=77e16d55&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/liric/Edit.vue?vue&type=template&id=77e16d55& ***!
+  \*******************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_77e16d55___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=77e16d55& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/liric/Edit.vue?vue&type=template&id=77e16d55&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_77e16d55___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_77e16d55___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
